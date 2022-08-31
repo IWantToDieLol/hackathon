@@ -62,6 +62,7 @@ const mainRoute = require('./routes/main');
 
 // Any URL with the pattern ‘/*’ is directed to routes/main.js
 app.use('/', mainRoute);
+// testing
 
 /*
 * Creates a port for express server since we don't want our app to clash with well known
