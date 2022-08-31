@@ -1,7 +1,155 @@
-<div class="jumbotron text-center">
-	<div class="container">
-		<h1 class="display-4">{{title}}</h1>
-		<p class="lead">Your personal video jotter</p>
-	</div>
-	<br>
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>Checkout form</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Billing address</h4>
+      <form action="" method="post">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">First name</label>
+            <input type="text" name="firstname" class="form-control" id="firstName" placeholder="" value="" required="">
+            <div>
+              {{!-- {% if error != "" %}
+              <p style="color: red;">{{ error }}</p>
+              {% endif %} --}}
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Last name</label>
+            <input type="text" name="lastname" class="form-control" id="lastName" placeholder="" value="" required="">
+            <div>
+              {{!-- {% if error != "" %}
+              <p style="color: red;">{{ error }}</p>
+              {% endif %} --}}
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="username">Username</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">@</span>
+            </div>
+            <input type="text" name="username" class="form-control" id="username" placeholder="Username" value="">
+            <div>
+              {{!-- {% if error != "" %}
+              <p style="color: red;">{{ error }}</p>
+              {% endif %} --}}
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email">Email</label>
+          <input type="email" name="email" class="form-control" id="email" value="{{user.email}}">
+          <div>
+            {{!-- {% if error != "" %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %} --}}
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address">Address</label>
+          <input type="text" name="address" class="form-control" id="address"
+            placeholder="Block number, Address name, Unit number" value="{{user.address}}" required="">
+          <div>
+            {{!-- {% if error != "" %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %} --}}
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address">BlockNo</label>
+          <input type="text" name="blockno" class="form-control" id="blockno" placeholder="Block 666" required="">
+          <div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address">Street</label>
+          <input type="text" name="street" class="form-control" id="street" placeholder="Ang Mo Kio Avenue 6"
+            required="">
+          <div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="Phone number">Phone number</label>
+            <input type="text" name="phonenumber" class="form-control" id="phone_number" placeholder="" value=""
+              required="">
+            {{!-- <div>
+              {% if error != "" %}
+              <p style="color: red;">{{ error }}</p>
+              {% endif %}
+            </div> --}}
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="country">Country</label>
+            <input type="country" name="country" class="form-control" id="country" placeholder="">
+            <div>
+              {{!-- {% if error != "" %}
+              <p style="color: red;">{{ error }}</p>
+              {% endif %} --}}
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="zip">Postal Code</label>
+            <input type="text" name="postalcode" class="form-control" id="zip" placeholder="" value="" required="">
+            <div>
+              {{!-- {% if error != "" %}
+              <p style="color: red;">{{ error }}</p>
+              {% endif %} --}}
+            </div>
+          </div>
+        </div>
+
+
+
+        <hr class="mb-4">
+        <div id="paypal-button-container"></div>
+      </form>
+    </div>
+  </div>
 </div>
+
+
+<script src="https://www.paypal.com/sdk/js?client-id={{paypalClientId}}&currency=SGD"
+  data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      // This function sets up the details of the transaction, including the amount and line item details.
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '0.01'
+          }
+        }]
+      });
+    },
+    onApprove: function (data, actions) {
+      // Below function captures the funds from the transaction.
+      return actions.order.capture().then(async function (details) {
+        console.log(details);
+        let price = 0.01;
+
+        await fetch('/main/purchasedetails', {
+          method: "POST",
+          headers: {
+            price
+          }
+        })
+        return window.location.pathname = `/successpage`
+        //alert('Transaction completed by ' + details.payer.name.given_name);
+      });
+    }
+  }).render('#paypal-button-container');
+  //This function displays Smart Payment Buttons on your web page.
+</script>
