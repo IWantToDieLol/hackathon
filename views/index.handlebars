@@ -193,9 +193,34 @@
 	}
 
   let id = '';
+  let donationAmount = 0;
 
   function replyid(clicked_id){
     let id = clicked_id;
+  }
+
+  if (id == "5Dollars"){
+    let donationAmount =  document.getElementById('5Dollars').value
+  }
+
+  if (id == "10Dollars"){
+    let donationAmount =  document.getElementById('10Dollars').value
+  }
+
+  if (id == "20Dollars"){
+    let donationAmount =  document.getElementById('20Dollars').value
+  }
+
+  if (id == "50Dollars"){
+    let donationAmount =  document.getElementById('50Dollars').value
+  }
+
+  if (id == "100Dollars"){
+    let donationAmount =  document.getElementById('100Dollars').value
+  }
+
+  if (id == "150Dollars"){
+    let donationAmount =  document.getElementById('150Dollars').value
   }
 
 	paypal.Buttons({
@@ -203,9 +228,9 @@
 			// This function sets up the details of the transaction, including the amount and line item details.
 
 
-      let donationAmount = document.getElementsByName('donationAmount').value;
+      let donoamt = document.getElementsByName('donationAmount')[0].value;
       let customAmount = document.getElementById('customAmount').value;
-      let price = donationAmount != undefined ? donationAmount : customAmount;
+      let price = donoamt != undefined ? donoamt : customAmount;
 
 
 
