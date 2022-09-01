@@ -1,180 +1,189 @@
-<div class="container">
-	{{!-- <div class="py-5 text-center">
-		<h2>Checkout form</h2>
-	</div>
-
-	<div class="row">
-		<div class="col-md-8 order-md-1">
-			<h4 class="mb-3">Billing address</h4>
-
-			<form action="" method="post">
-				<div class="row">
-					<div class="col-md-6 mb-3">
-						<label for="firstName">First name</label>
-						<input type="text" name="firstname" class="form-control" id="firstName" placeholder="" value=""
-							required="">
-						<div>
-							{% if error != "" %}
-							<p style="color: red;">{{ error }}</p>
-							{% endif %}
-						</div>
-					</div>
-					<div class="col-md-6 mb-3">
-						<label for="lastName">Last name</label>
-						<input type="text" name="lastname" class="form-control" id="lastName" placeholder="" value=""
-							required="">
-						<div>
-							{% if error != "" %}
-							<p style="color: red;">{{ error }}</p>
-							{% endif %}
-						</div>
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="username">Username</label>
-					<div class="input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">@</span>
-						</div>
-						<input type="text" name="username" class="form-control" id="username" placeholder="Username"
-							value="">
-						<div>
-							{% if error != "" %}
-							<p style="color: red;">{{ error }}</p>
-							{% endif %}
-						</div>
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="email">Email</label>
-					<input type="email" name="email" class="form-control" id="email" value="{{user.email}}">
-					<div>
-						{% if error != "" %}
-						<p style="color: red;">{{ error }}</p>
-						{% endif %}
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="address">Address</label>
-					<input type="text" name="address" class="form-control" id="address"
-						placeholder="Block number, Address name, Unit number" value="{{user.address}}" required="">
-					<div>
-						{% if error != "" %}
-						<p style="color: red;">{{ error }}</p>
-						{% endif %}
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="address">BlockNo</label>
-					<input type="text" name="blockno" class="form-control" id="blockno" placeholder="Block 666"
-						required="">
-					<div>
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<label for="address">Street</label>
-					<input type="text" name="street" class="form-control" id="street" placeholder="Ang Mo Kio Avenue 6"
-						required="">
-					<div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-4 mb-3">
-						<label for="Phone number">Phone number</label>
-						<input type="text" name="phonenumber" class="form-control" id="phone_number" placeholder=""
-							value="" required="">
-						<div>
-							{% if error != "" %}
-							<p style="color: red;">{{ error }}</p>
-							{% endif %}
-						</div>
-					</div>
-					<div class="col-md-5 mb-3">
-						<label for="country">Country</label>
-						<input type="country" name="country" class="form-control" id="country" placeholder="">
-						<div>
-							{% if error != "" %}
-							<p style="color: red;">{{ error }}</p>
-							{% endif %}
-						</div>
-					</div>
-					<div class="col-md-3 mb-3">
-						<label for="zip">Postal Code</label>
-						<input type="text" name="postalcode" class="form-control" id="zip" placeholder="" value=""
-							required="">
-						<div>
-							{% if error != "" %}
-							<p style="color: red;">{{ error }}</p>
-							{% endif %}
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div> --}}
-
-
-
-	<form method="post" action="/payment" class="donationForm" style="width: 600px;">
-		<h3 class="ms-2 mb-4">Donation now</h3>
-
-		<div class="row text-center gx-5">
-			<div class="col-4">
-				<input type="radio" name="donationAmount" id="5Dollars" value="5" onclick="replyid(this.id)" required>
-				<label for='5Dollars'><div class="">SGD 5</div></label>
-			</div>
-
-			<div class="col-4">
-				<input type="radio" name="donationAmount" id="10Dollars" value="10" onclick="replyid(this.id)" required>
-				<label for='10Dollars'><div class="">SGD 10</div></label>
-			</div>
-
-			<div class="col-4">
-				<input type="radio" name="donationAmount" id="20Dollars" value="20" onclick="replyid(this.id)" required>
-				<label for='20Dollars'><div class="">SGD 20</div></label>
-			</div>
-		</div>
-
-		<div class="row text-center gx-5 mt-3">
-			<div class="col-4">
-				<input type="radio" name="donationAmount" id="50Dollars" value="50" onclick="replyid(this.id)" required>
-				<label for='50Dollars'><div class="">SGD 50</div></label>
-			</div>
-
-			<div class="col-4">
-				<input type="radio" name="donationAmount" id="100Dollars" value="100" onclick="replyid(this.id)" required>
-				<label for='100Dollars'><div class="">SGD 100</div></label>
-			</div>
-
-			<div class="col-4">
-				<input type="radio" name="donationAmount" id="150Dollars" value="150" onclick="replyid(this.id)" required>
-				<label for='150Dollars'><div class="">SGD 150</div></label>
-			</div>
-		</div>
-
-		<div class="row mt-3 gx-5">
-			<div class="col-12">
-				<div class="form-floating mb-3">
-					<input type="number" class="form-control shadow-none" name="customAmount" id="customAmount" placeholder="0" min="1" max="999" onkeyup=checkInput() required>
-					<label for="donationAmount">Custom amount (S$)</label>
-				</div>
-			</div>
-		</div>
-		<button class="btn btn-primary shadow-none w-100 mb-3" style="padding: 15px;width: 600px;">NETS QR Code</button>
-	</form>
-
-	<div style="width: 600px;">
-		<p style="text-align: center;">or</p>
-		<div id="paypal-button-container"></div>
-	</div>
+{{!-- <div class="py-5 text-center">
+	<h2>Checkout form</h2>
 </div>
 
+<div class="row">
+	<div class="col-md-8 order-md-1">
+		<h4 class="mb-3">Billing address</h4>
+
+		<form action="" method="post">
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<label for="firstName">First name</label>
+					<input type="text" name="firstname" class="form-control" id="firstName" placeholder="" value=""
+						required="">
+					<div>
+						{% if error != "" %}
+						<p style="color: red;">{{ error }}</p>
+						{% endif %}
+					</div>
+				</div>
+				<div class="col-md-6 mb-3">
+					<label for="lastName">Last name</label>
+					<input type="text" name="lastname" class="form-control" id="lastName" placeholder="" value=""
+						required="">
+					<div>
+						{% if error != "" %}
+						<p style="color: red;">{{ error }}</p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="mb-3">
+				<label for="username">Username</label>
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text">@</span>
+					</div>
+					<input type="text" name="username" class="form-control" id="username" placeholder="Username"
+						value="">
+					<div>
+						{% if error != "" %}
+						<p style="color: red;">{{ error }}</p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="mb-3">
+				<label for="email">Email</label>
+				<input type="email" name="email" class="form-control" id="email" value="{{user.email}}">
+				<div>
+					{% if error != "" %}
+					<p style="color: red;">{{ error }}</p>
+					{% endif %}
+				</div>
+			</div>
+
+			<div class="mb-3">
+				<label for="address">Address</label>
+				<input type="text" name="address" class="form-control" id="address"
+					placeholder="Block number, Address name, Unit number" value="{{user.address}}" required="">
+				<div>
+					{% if error != "" %}
+					<p style="color: red;">{{ error }}</p>
+					{% endif %}
+				</div>
+			</div>
+
+			<div class="mb-3">
+				<label for="address">BlockNo</label>
+				<input type="text" name="blockno" class="form-control" id="blockno" placeholder="Block 666"
+					required="">
+				<div>
+				</div>
+			</div>
+
+			<div class="mb-3">
+				<label for="address">Street</label>
+				<input type="text" name="street" class="form-control" id="street" placeholder="Ang Mo Kio Avenue 6"
+					required="">
+				<div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4 mb-3">
+					<label for="Phone number">Phone number</label>
+					<input type="text" name="phonenumber" class="form-control" id="phone_number" placeholder=""
+						value="" required="">
+					<div>
+						{% if error != "" %}
+						<p style="color: red;">{{ error }}</p>
+						{% endif %}
+					</div>
+				</div>
+				<div class="col-md-5 mb-3">
+					<label for="country">Country</label>
+					<input type="country" name="country" class="form-control" id="country" placeholder="">
+					<div>
+						{% if error != "" %}
+						<p style="color: red;">{{ error }}</p>
+						{% endif %}
+					</div>
+				</div>
+				<div class="col-md-3 mb-3">
+					<label for="zip">Postal Code</label>
+					<input type="text" name="postalcode" class="form-control" id="zip" placeholder="" value=""
+						required="">
+					<div>
+						{% if error != "" %}
+						<p style="color: red;">{{ error }}</p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div> --}}
+
+<div class="container-fluid row ps-0" id="donationSection" style="height: 100vh;">
+	<div class="col-7 ps-0">
+		<img src="img/donation-img.jpg" alt="" class="img-fluid h-100">
+
+		<div class="ps-3" style="position: relative;top: -12em;z-index: 50;color: white;">
+			<h1 style="font-size: 50px;font-family: 'Cabin', sans-serif;">SAVE THE EARTH</h1>
+			<p class="pe-5">Do your part by contributing any amount to help make the world green and beautiful again</p>
+		</div>
+	</div>
+
+	<div class="col-5 ps-3 pe-0 pt-4 my-auto">
+		<h2 class="ps-1" style="font-family: 'Cabin', sans-serif;">Donate Here</h2>
+		<p class="ps-1">Every dollar given will help to plant 1 tree</p>
+
+		<form method="post" action="/payment" class="donationForm mt-4">
+			<div class="row text-center gx-5">
+				<div class="col-4">
+					<input type="radio" name="donationAmount" id="5Dollars" value="5" required>
+					<label for='5Dollars'><div class="">SGD 5</div></label>
+				</div>
+
+				<div class="col-4">
+					<input type="radio" name="donationAmount" id="10Dollars" value="10" required>
+					<label for='10Dollars'><div class="">SGD 10</div></label>
+				</div>
+
+				<div class="col-4">
+					<input type="radio" name="donationAmount" id="20Dollars" value="20" required>
+					<label for='20Dollars'><div class="">SGD 20</div></label>
+				</div>
+			</div>
+
+			<div class="row text-center gx-5 mt-3">
+				<div class="col-4">
+					<input type="radio" name="donationAmount" id="50Dollars" value="50" required>
+					<label for='50Dollars'><div class="">SGD 50</div></label>
+				</div>
+
+				<div class="col-4">
+					<input type="radio" name="donationAmount" id="100Dollars" value="100" required>
+					<label for='100Dollars'><div class="">SGD 100</div></label>
+				</div>
+
+				<div class="col-4">
+					<input type="radio" name="donationAmount" id="150Dollars" value="150" required>
+					<label for='150Dollars'><div class="">SGD 150</div></label>
+				</div>
+			</div>
+
+			<div class="row mt-3 gx-5">
+				<div class="col-12">
+					<div class="form-floating mb-3">
+						<input type="number" class="form-control shadow-none" name="customAmount" id="customAmount" placeholder="0" min="1" max="999" onkeyup=checkInput() required>
+						<label class="text-start" for="donationAmount">Custom amount (S$)</label>
+					</div>
+				</div>
+			</div>
+			<button class="btn btn-primary shadow-none w-100 mb-3" style="padding: 15px;">NETS QR Code</button>
+		</form>
+
+		<div>
+			<p style="text-align: center;">or</p>
+			<div id="paypal-button-container"></div>
+		</div>
+	</div>
+</div>
 
 <script src="https://www.paypal.com/sdk/js?client-id={{paypalClientId}}&currency=SGD"
 	data-sdk-integration-source="button-factory"></script>
@@ -193,34 +202,9 @@
 	}
 
   let id = '';
-  let donationAmount = 0;
 
   function replyid(clicked_id){
     let id = clicked_id;
-  }
-
-  if (id == "5Dollars"){
-    let donationAmount =  document.getElementById('5Dollars').value
-  }
-
-  if (id == "10Dollars"){
-    let donationAmount =  document.getElementById('10Dollars').value
-  }
-
-  if (id == "20Dollars"){
-    let donationAmount =  document.getElementById('20Dollars').value
-  }
-
-  if (id == "50Dollars"){
-    let donationAmount =  document.getElementById('50Dollars').value
-  }
-
-  if (id == "100Dollars"){
-    let donationAmount =  document.getElementById('100Dollars').value
-  }
-
-  if (id == "150Dollars"){
-    let donationAmount =  document.getElementById('150Dollars').value
   }
 
 	paypal.Buttons({
@@ -228,9 +212,9 @@
 			// This function sets up the details of the transaction, including the amount and line item details.
 
 
-      let donoamt = document.getElementsByName('donationAmount')[0].value;
+      let donationAmount = document.getElementsByName('donationAmount').value;
       let customAmount = document.getElementById('customAmount').value;
-      let price = donoamt != undefined ? donoamt : customAmount;
+      let price = donationAmount != undefined ? donationAmount : customAmount;
 
 
 
