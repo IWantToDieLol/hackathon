@@ -17,9 +17,11 @@ paypal.configure({
     'client_secret': paypalClientSecret
 });
 
+
 router.get('/', (req, res) => {
 	res.render('index', { paypalClientId: paypalClientId })
 });
+
 
 router.post('/purchasedetails', async function (req, res){
 	let {price}= req.headers;

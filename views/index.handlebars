@@ -126,34 +126,34 @@
 
 		<div class="row text-center gx-5">
 			<div class="col-4">
-				<input type="radio" name="donationAmount" id="5Dollars" value="5" required>
+				<input type="radio" name="donationAmount" id="5Dollars" value="5" onclick="replyid(this.id)" required>
 				<label for='5Dollars'><div class="">SGD 5</div></label>
 			</div>
 
 			<div class="col-4">
-				<input type="radio" name="donationAmount" id="10Dollars" value="10" required>
+				<input type="radio" name="donationAmount" id="10Dollars" value="10" onclick="replyid(this.id)" required>
 				<label for='10Dollars'><div class="">SGD 10</div></label>
 			</div>
 
 			<div class="col-4">
-				<input type="radio" name="donationAmount" id="20Dollars" value="20" required>
+				<input type="radio" name="donationAmount" id="20Dollars" value="20" onclick="replyid(this.id)" required>
 				<label for='20Dollars'><div class="">SGD 20</div></label>
 			</div>
 		</div>
 
 		<div class="row text-center gx-5 mt-3">
 			<div class="col-4">
-				<input type="radio" name="donationAmount" id="50Dollars" value="50" required>
+				<input type="radio" name="donationAmount" id="50Dollars" value="50" onclick="replyid(this.id)" required>
 				<label for='50Dollars'><div class="">SGD 50</div></label>
 			</div>
 
 			<div class="col-4">
-				<input type="radio" name="donationAmount" id="100Dollars" value="100" required>
+				<input type="radio" name="donationAmount" id="100Dollars" value="100" onclick="replyid(this.id)" required>
 				<label for='100Dollars'><div class="">SGD 100</div></label>
 			</div>
 
 			<div class="col-4">
-				<input type="radio" name="donationAmount" id="150Dollars" value="150" required>
+				<input type="radio" name="donationAmount" id="150Dollars" value="150" onclick="replyid(this.id)" required>
 				<label for='150Dollars'><div class="">SGD 150</div></label>
 			</div>
 		</div>
@@ -192,13 +192,27 @@
 		}
 	}
 
+  let id = '';
+
+  function replyid(clicked_id){
+    let id = clicked_id;
+  }
+
 	paypal.Buttons({
 		createOrder: function (data, actions) {
 			// This function sets up the details of the transaction, including the amount and line item details.
+
+
+      let donationAmount = document.getElementsByName('donationAmount').value;
+      let customAmount = document.getElementById('customAmount').value;
+      let price = donationAmount != undefined ? donationAmount : customAmount;
+
+
+
 			return actions.order.create({
 				purchase_units: [{
 					amount: {
-						value: '0.01'
+						value: price
 					}
 				}]
 			});
@@ -206,15 +220,8 @@
 		onApprove: function (data, actions) {
 			// Below function captures the funds from the transaction.
 			return actions.order.capture().then(async function (details) {
-				console.log(details);
-				let price = 0.01;
-
-				await fetch('/main/purchasedetails', {
-					method: "POST",
-					headers: {
-						price
-					}
-				})
+        
+				
 				return window.location.pathname = `/successpage`
 				//alert('Transaction completed by ' + details.payer.name.given_name);
 			});
