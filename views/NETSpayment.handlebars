@@ -1,0 +1,30 @@
+<script src="https://uat2.enets.sg/GW2/pluginpages/env.jsp"></script>
+<script type="text/javascript" src="https://uat2.enets.sg/GW2/js/apps.js"></script>
+
+<style>
+    .navbar {
+        display: none;
+    }
+    footer {
+        display: none !important;
+    }
+</style>
+
+<input type="hidden" id="txnReq" name="txnReq" value="{{txnReq}}">
+<input type="hidden" id="keyId" name="keyId" value={{keyID}}>
+<input type="hidden" id="hmac" name="hmac" value={{hmac}}>
+
+<div style="margin-top: 5%;">
+    <fieldset>
+        <div id="ajaxResponse"></div>
+    </fieldset>
+</div>
+
+<script>
+    window.onload = function() {
+        var txnReq = document.getElementById('txnReq').value;
+        var keyId = document.getElementById('keyId').value;
+        var hmac = document.getElementById('hmac').value;
+        sendPayLoad(txnReq, hmac, keyId);
+    };
+</script>

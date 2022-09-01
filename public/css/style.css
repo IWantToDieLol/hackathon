@@ -1,4 +1,19 @@
-.logo{
-  width:130px;
-  margin:auto;
+.donationForm input[type='radio'] {
+  display: none;
+}
+
+.donationForm label {
+  cursor: pointer;
+}
+
+.donationForm .col-4 label div {
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding: 25px 30px;
+  width: 123px;
+}
+
+.donationForm input[type='radio']:checked + label div {
+  background-color: rgb(58, 58, 58);
+  color: white;
 }
