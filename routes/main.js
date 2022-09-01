@@ -88,6 +88,10 @@ router.post('/payment', (req, res) => {
     res.render('NETSpayment', { txnReq: JSON.stringify(txnReq), hmac: MAC_Value, keyID: keyID });
 })
 
+router.post('/successpage', (req, res) => {
+	res.render('successpage')
+});
+
 router.get('/quiz', (req, res) => {
 	res.render('quiz')
 });
