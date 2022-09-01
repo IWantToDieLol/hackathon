@@ -2,48 +2,48 @@
  //you can change the questions to your own taste or even add more questions..
  const questions = [
     {
-        question: "How many days makes a week ?",
-        optionA: "10 days",
-        optionB: "14 days",
-        optionC: "5 days",
-        optionD: "7 days",
-        correctOption: "optionD"
+        question: "What are the 3'Rs?",
+        optionA: "Reuse Reduce Recycle",
+        optionB: "Recycle Reduce Reproduce",
+        optionC: "Reuse Reduce Respawn",
+        optionD: "None",
+        correctOption: "optionA"
     },
 
     {
-        question: "How many players are allowed on a soccer pitch ?",
-        optionA: "10 players",
-        optionB: "11 players",
-        optionC: "9 players",
-        optionD: "12 players",
+        question: "What is happening in Antartica ?",
+        optionA: "Summer",
+        optionB: "Ice Melting",
+        optionC: "Nothing",
+        optionD: "Autumn",
         correctOption: "optionB"
     },
 
     {
-        question: "Who was the first President of USA ?",
-        optionA: "Donald Trump",
-        optionB: "Barack Obama",
-        optionC: "Abraham Lincoln",
-        optionD: "George Washington",
-        correctOption: "optionD"
+        question: "Wasting Food is a way to reduce green house gases emissions ?",
+        optionA: "True.",
+        optionB: "False",
+        optionC: "Neither",
+        optionD: "Dont Know",
+        correctOption: "optionA"
     },
 
     {
-        question: "30 days has ______ ?",
-        optionA: "January",
-        optionB: "December",
-        optionC: "June",
-        optionD: "August",
+        question: "Which of the following is a greenhouse gas",
+        optionA: "CO2",
+        optionB: "CH4",
+        optionC: "All",
+        optionD: "Water Vapour",
         correctOption: "optionC"
     },
 
     {
-        question: "How manay hours can be found in a day ?",
-        optionA: "30 hours",
-        optionB: "38 hours",
-        optionC: "48 hours",
-        optionD: "24 hours",
-        correctOption: "optionD"
+        question: "What is a greenhouse effect?",
+        optionA: "Traps heat",
+        optionB: "Build solar panel",
+        optionC: "Building Energy",
+        optionD: "All the above",
+        correctOption: "optionA"
     },
 
     {
@@ -388,4 +388,24 @@ function closeScoreModal() {
 //function to close warning modal
 function closeOptionModal() {
     document.getElementById('option-modal').style.display = "none"
+}
+
+
+var faq = document.getElementsByClassName("faq-page");
+var i;
+
+for (i = 0; i < faq.length; i++) {
+    faq[i].addEventListener("click", function () {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var body = this.nextElementSibling;
+        if (body.style.display === "block") {
+            body.style.display = "none";
+        } else {
+            body.style.display = "block";
+        }
+    });
 }

@@ -3,6 +3,8 @@ const crypto = require('crypto');
 const paypal = require('paypal-rest-sdk');
 const router = express.Router();
 const quiz = require('../views/quiz');
+const FAQ = require('../views/FAQ');
+
 
 
 router.use(express.urlencoded({ extended: true }));
@@ -90,5 +92,8 @@ router.get('/quiz', (req, res) => {
 	res.render('quiz')
 });
 
+router.get('/FAQ', (req, res) => {
+	res.render('FAQ')
+});
 
 module.exports = router;
